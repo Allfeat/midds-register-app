@@ -17,6 +17,4 @@
     <div class="container grid">
 
     </div>
-
-    <div class="background"></div>
 </main>

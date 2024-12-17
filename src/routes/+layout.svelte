@@ -79,3 +79,5 @@
 {/key}
 
 <Footer />
+
+<div class="background"></div>
