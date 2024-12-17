@@ -1,0 +1,41 @@
+.button {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 16px;
+    border-radius: 64px;
+    font-weight: 700;
+    line-height: 0.95;
+    font-family: inherit;
+    color: #151515;
+    border: none;
+    cursor: pointer;
+
+    // Type variant: Plain
+    &.is-plain {
+        background: #FFFBEB;
+    }
+
+    // Type variant: Border
+    &.is-border {
+        background: none;
+        border: 1px solid #FFFBEB;
+    }
+
+    // Color variant: Red
+    &.is-red {
+        --color: #{$color-red};
+    }
+
+    // Color variant: Green
+    &.is-green {
+        --color: #{$color-green};
+    }
+
+    // Size variant: Medium
+    &.is-medium {
+        height: 36px;
+        gap: 12px;
+        padding: 0 16px;
+        font-size: pxrem(16px);
+    }
+}

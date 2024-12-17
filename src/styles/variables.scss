@@ -18,9 +18,9 @@ $font-sans: "tasaOrbiter", #{$replacement-sans};
 /* Sizes, margins and spacing
 ========================================================================== */
 $base-width: 1440 !default;
-$container-width: 1024px !default;
 $margin-side-m: 16px !default;
 $margin-side-d: clamp(20px, 2vw, 24px) !default;
+$container-width: 1024px + 24px * 2 !default;
 
 // Grid
 $cols-m: 8 !default;

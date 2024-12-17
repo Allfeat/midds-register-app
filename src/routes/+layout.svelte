@@ -10,8 +10,8 @@
     import { DELAY, DURATION } from 'utils/constants'
     import { scrollToTop } from 'utils/scroll'
     // Components
-    // import Header from '$components/organisms/Header/Header.svelte'
-    // import Footer from '$components/organisms/Footer/Footer.svelte'
+    import Header from '$components/organisms/Header/Header.svelte'
+    import Footer from '$components/organisms/Footer/Footer.svelte'
 
     let { data, children } = $props()
     let innerHeight = $state<number>(0)
@@ -67,7 +67,7 @@
 </svelte:head>
 
 
-<!-- <Header /> -->
+<Header />
 
 {#key data.currentPath}
     <div
@@ -78,4 +78,4 @@
     </div>
 {/key}
 
-<!-- <Footer /> -->
+<Footer />

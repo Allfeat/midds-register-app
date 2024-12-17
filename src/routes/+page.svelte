@@ -15,6 +15,8 @@
 
 <main class="app">
     <div class="container grid">
-        <h1>MIDDS</h1>
+
     </div>
+
+    <div class="background"></div>
 </main>

@@ -1,3 +1,10 @@
 .app {
 
 }
+
+// Background
+.background {
+    background:
+        radial-gradient(58% 306% at 103% -250%, $color-red 0%, rgba($color-red, 0) 100%),
+        radial-gradient(65% 340% at -33.5% -215%, $color-green 0%, rgba($color-green, 0) 100%);
+}
