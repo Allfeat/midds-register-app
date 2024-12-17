@@ -1,0 +1,16 @@
+{
+    "short_name": "MIDDS",
+    "name": "MIDDS",
+    "description": "",
+    "start_url": "/?source=pwa",
+    "scope": "/",
+    "background_color": "#151515",
+    "theme_color": "#151515",
+    "display": "standalone",
+    "icons": [
+      { "src": "/icon-192.png", "type": "image/png", "sizes": "192x192", "purpose": "any" },
+      { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512", "purpose": "any" },
+      { "src": "/icon-192-mask.png", "type": "image/png", "sizes": "192x192", "purpose": "maskable" },
+      { "src": "/icon-512-mask.png", "type": "image/png", "sizes": "512x512", "purpose": "maskable" }
+    ]
+}

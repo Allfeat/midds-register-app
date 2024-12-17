@@ -1,0 +1,10 @@
+/*
+** Grid
+*/
+.grid {
+    display: grid;
+    grid-template-columns: repeat(var(--columns), 1fr);
+    grid-column: 1 / -1;
+    align-items: start;
+    column-gap: var(--gutter);
+}

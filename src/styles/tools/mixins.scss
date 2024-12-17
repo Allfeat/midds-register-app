@@ -1,0 +1,97 @@
+@use "sass:math";
+@use "sass:map";
+@use "../variables" as *;
+
+
+// Hide text
+%hide-text {
+    overflow: hidden;
+    white-space: nowrap;
+    text-indent: 200%;
+}
+
+// Clearfix
+%clearfix {
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+// Get REM font-size and line-height
+@mixin fs-lh ($fontSize, $lineHeight) {
+    font-size: pxrem($fontSize);
+    line-height: math.div(round(math.div($lineHeight, $fontSize) * 1000), 1000);
+}
+
+// Top-right-bottom-left
+@mixin trbl ($value: 0) {
+    top: $value; right: $value; bottom: $value; left: $value;
+}
+
+// Smooth fonts
+@mixin font-smooth {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+/**
+ * Dark mode
+ */
+@mixin darkMode {
+    @media (prefers-color-scheme: dark) {
+        @content;
+    }
+}
+
+
+/**
+ * Prefers Reduced Motion
+ */
+@mixin reducedMotion {
+    @media (prefers-reduced-motion) {
+        @content;
+    }
+}
+
+
+/**
+ * Hover capable
+ */
+@mixin hover {
+    @media (hover: hover) {
+        @content;
+    }
+}
+
+
+/**
+ * Reponsive breakpoints
+ */
+@mixin bp ($size, $to: min, $sizes: $breakpoints) {
+    $queryType: if($to == min, min-width, max-width);
+
+    @if map.has-key($sizes, $size) {
+        $size: map.get($sizes, $size);
+    }
+
+    @media (#{$queryType}: #{$size}) {
+        @content;
+    }
+}
+
+
+/**
+ * Font-face
+ */
+@mixin font-face ($family, $variant, $weight: normal, $style: normal, $display: swap) {
+    @font-face {
+        font-family: "#{$family}";
+        font-style: $style;
+        font-weight: $weight;
+        font-display: $display;
+        src: local("#{$variant}"), url("#{$dir-fonts}/#{$variant}.woff2") format("woff2");
+    }
+}

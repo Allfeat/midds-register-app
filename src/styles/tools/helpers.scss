@@ -1,0 +1,38 @@
+@use "../imports" as *;
+
+
+/* Classes
+========================================================================== */
+.clear {
+    @extend %clearfix;
+}
+%center {
+    margin: 0 auto;
+}
+%trbl {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+%full-size {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* Containers
+========================================================================== */
+.container {
+    position: relative;
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding-left: calc(var(--margin-side) + env(safe-area-inset-left));
+    padding-right: calc(var(--margin-side) + env(safe-area-inset-right));
+
+    @include bp (sm) {
+        padding-left: var(--margin-side);
+        padding-right: var(--margin-side);
+    }
+}

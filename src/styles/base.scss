@@ -1,0 +1,189 @@
+@use "imports" as *;
+
+
+html {
+    font: #{$base-font-size}/1.2 $font-sans;
+    color: var(--color-light);
+    background: var(--color-dark);
+    word-break: normal;
+}
+body {
+    @include font-smooth;
+    overscroll-behavior: none;
+    overflow-x: hidden;
+
+    &.is-loading * {
+        cursor: wait !important;
+    }
+    &.block-scroll {
+        overflow: hidden;
+    }
+}
+*, *:before, *:after {
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+}
+figure, p, dl, dt, dd, ul, ol, li {
+    margin: 0;
+    padding: 0;
+}
+figure, picture {
+    display: block;
+}
+a {
+    text-decoration: none;
+    color: currentColor;
+}
+nav li:before {
+    display: none;
+}
+label {
+    cursor: pointer;
+}
+button {
+    &[disabled] {
+        cursor: not-allowed;
+    }
+}
+
+// Accessibility outline
+// Remove default focus styles for mouse users if :focus-visible is supported
+[data-js-focus-visible] :focus:not([data-focus-visible-added]) {
+    outline: none;
+}
+[data-focus-visible-added], *:focus-visible {
+    outline: 1px dashed var(--color-primary-dark);
+}
+
+// Selection
+::selection {
+    color: #fff;
+    background: var(--color-secondary);
+}
+
+// Images glitches fix
+// img {backface-visibility: hidden;}
+
+
+
+/* Titles
+========================================================================== */
+#{headings(1,6)} {
+    margin: 0;
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* Global elements
+========================================================================== */
+main {
+    position: relative;
+    z-index: 1;
+    background: var(--color-primary);
+}
+
+// Hyphens text
+.hyphens {
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    word-break: break-word;
+}
+
+// Link: Animated underline effect
+.link-underline {
+    display: inline-block;
+    background: linear-gradient(to right, currentColor, currentColor) no-repeat;
+    background-size: 0% 1px;
+    background-position: 100% 100%;
+    transition: background-size 0.3s var(--ease-quart-inout);
+    text-decoration: none;
+
+    &:hover {
+        background-size: 100% 1px;
+        background-position: 0% 100%;
+    }
+}
+
+// Background
+.background-pattern {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    user-select: none;
+    mask-image: linear-gradient(180deg, #000 60%, transparent 105%);
+    overflow: hidden;
+
+    img {
+        --translate-3d: -50%, -50%, 0;
+        opacity: 0.15;
+        display: block;
+        position: absolute;
+        width: 150%;
+        height: auto;
+        top: min(12vw, 300px);
+        left: 62.5%;
+        transform: translate3d(var(--translate-3d));
+        animation: rotate360flipped 180s linear infinite;
+        transform-origin: 17% 47%;
+    }
+
+    &.is-flipped {
+        img {
+            top: 0;
+            left: 0;
+            transform: scaleX(-1) translate3d(var(--translate-3d));
+            transform-origin: 17% 47%;
+        }
+    }
+    &.is-slow {
+        img {
+            animation-duration: 320s !important;
+        }
+    }
+}
+@keyframes rotate360 {
+    0%, 100% { transform: translate3d(var(--translate-3d)) rotate(-16deg); }
+    50% { transform: translate3d(var(--translate-3d)) rotate(90deg); }
+}
+@keyframes rotate360flipped {
+    0%, 100% { transform: scaleX(-1) translate3d(var(--translate-3d)) rotate(-16deg); }
+    50% { transform: scaleX(-1) translate3d(var(--translate-3d)) rotate(90deg); }
+}
+
+// Halo
+.halo {
+    position: absolute;
+    z-index: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: min(90vw, 550px);
+    background-position: -40vw 10vw;
+    background-size: 180vw auto;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    user-select: none;
+
+    @include bp (sm) {
+        height: min(60vw, 700px);
+        background-position: 20vw 0;
+        background-size: 120vw auto;
+    }
+    @include bp (md) {
+        background-position: 5vw 5vw;
+        background-size: 135vw auto;
+    }
+
+    // Variants: Colors
+    &.is-red {
+        background-image: url(#{$dir-img}/halo-red.png);
+    }
+    &.is-green {
+        background-image: url(#{$dir-img}/halo-green.png);
+    }
+}

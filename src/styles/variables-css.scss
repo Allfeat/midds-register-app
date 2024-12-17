@@ -1,0 +1,42 @@
+@use "imports" as *;
+
+:root {
+    // Sizes
+    --screen: var(--vh);
+    --container-width: #{$container-width};
+    --margin-side: #{$margin-side-m};
+
+    // Grid
+    --columns: #{$cols-m};
+    --column: calc(min(100vw, var(--container-width)) / var(--columns));
+    --gutter: #{$gutter-m};
+
+    // Colors
+    --color-light: #{$color-beige};
+    --color-light-10: #{rgba($color-beige, 0.1)};
+    --color-light-20: #{rgba($color-beige, 0.2)};
+    --color-dark: #{$color-grey};
+    --color-secondary: #{$color-red};
+    --color-tertiary: #{$color-green};
+
+    // Animation
+    --ease-quart: cubic-bezier(.165, .84, .44, 1);
+    --ease-quart-inout: cubic-bezier(.76, 0, .24, 1);
+    --ease-cubic: cubic-bezier(.785, .135, .15, .86);
+
+    @include bp (sm) {
+        --columns: #{$cols-d};
+        --margin-side: #{$margin-side-d};
+        --gutter: #{$gutter-d};
+    }
+
+    // Dark theme
+    // @include darkMode {
+    // }
+}
+
+@supports (height: 100dvh) {
+    :root {
+        --screen: 100dvh;
+    }
+}

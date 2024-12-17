@@ -1,0 +1,71 @@
+@use "sass:math";
+@use "sass:color";
+@use "../variables" as *;
+
+
+/* PX to REM
+========================================================================== */
+@function pxrem($target, $context: $base-font-size) {
+    @if $target == 0 { @return 0; }
+    $size: math.div($target, $context);
+    @return math.div(round($size * 1000), 1000) + rem;
+}
+
+
+/* PX to VW
+========================================================================== */
+@function pxVW($value, $size: 'd') {
+    $base-width: if($size == 'd', $base-width-d, $base-width-m);
+    @if $value == 0 { @return 0; }
+    @return math.div($value, $base-width) * 100 + vw;
+}
+
+
+/* Get a min/max CSS function by converting a px value to vw from a base width
+========================================================================== */
+// Min version
+@function fluidmin($value, $size: 'd') {
+    $base-width: if($size == 'd', $base-width-d, $base-width-m);
+    $vw: math.div(strip-unit($value), $base-width) * 100vw;
+
+    @return #{"min(#{$vw}, #{$value})"};
+}
+// Max version
+@function fluidmax($value, $size: 'd') {
+    $base-width: if($size == 'd', $base-width-d, $base-width-m);
+    $vw: math.div(strip-unit($value), $base-width) * 100vw;
+
+    @return #{"max(#{$vw}, #{$value})"};
+}
+
+
+/* Negative min()
+========================================================================== */
+@function negmin($value, $max) {
+    @return calc(-1 * min($value, $max));
+}
+
+
+/* Headings
+========================================================================== */
+@function headings($from: 1, $to: 6) {
+    @if $from == $to {
+        @return "h#{$from}";
+    } @else {
+        @return "h#{$from}," + headings($from + 1, $to);
+    }
+}
+
+
+/* HEX color to RGB
+========================================================================== */
+@function hexToRGB($color) {
+    @return color.channel($color, "red", $space: rgb), color.channel($color, "green", $space: rgb), color.channel($color, "blue", $space: rgb);
+}
+
+
+/* Strip unit from value
+========================================================================== */
+@function strip-unit($value) {
+    @return math.div($value, ($value * 0 + 1));
+}

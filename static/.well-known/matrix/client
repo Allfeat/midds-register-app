@@ -1,0 +1,8 @@
+{
+    "m.homeserver": {
+        "base_url": "https://matrix.allfeat.com"
+    },
+    "org.matrix.msc3575.proxy": {
+        "url": "https://matrix.allfeat.com/sliding-sync"
+    }
+}

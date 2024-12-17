@@ -1,0 +1,7 @@
+@use "imports" as *;
+
+
+/* Fonts list
+========================================================================== */
+$font-family: "tasaOrbiter";
+@include font-face($font-family, "tasaOrbiter", 1 999);
