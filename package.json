@@ -16,14 +16,16 @@
   },
   "dependencies": {
     "animejs": "file:packages/animejs/animejs-4.0.0.beta-102.tgz",
+    "classix": "^2.2.0",
     "sanitize.css": "^13.0.0",
+    "svelte-persisted-state": "^0.1.0",
     "utils": "workspace:*"
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^3.3.1",
     "@sveltejs/adapter-cloudflare": "^4.8.0",
-    "@sveltejs/kit": "^2.12.1",
-    "@sveltejs/vite-plugin-svelte": "^5.0.2",
+    "@sveltejs/kit": "^2.12.2",
+    "@sveltejs/vite-plugin-svelte": "^5.0.3",
     "@typescript-eslint/eslint-plugin": "^8.18.1",
     "@typescript-eslint/parser": "^8.18.1",
     "browserslist": "^4.24.3",

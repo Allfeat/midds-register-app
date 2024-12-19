@@ -1,8 +1,8 @@
-import { resolve } from 'path'
+import { dirname } from 'path'
 import { fileURLToPath } from 'url'
 import { sveltePreprocess } from 'svelte-preprocess'
 
-export const globalStyles = `@use "${resolve(fileURLToPath(import.meta.url), '../src/styles/imports.scss')}" as *;`
+export const globalStyles = `@use "${dirname(fileURLToPath(import.meta.url))}/src/styles/imports" as *;`
 
 // Define adapter from script and use default otherwise
 let svelteAdapter
