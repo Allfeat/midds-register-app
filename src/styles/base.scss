@@ -41,9 +41,12 @@ label {
     cursor: pointer;
 }
 button {
-    &[disabled] {
+    &:disabled {
         cursor: not-allowed;
     }
+}
+strong {
+    font-weight: bold;
 }
 
 // Accessibility outline
@@ -75,21 +78,26 @@ button {
 }
 
 
+/* Utility classes
+========================================================================== */
+// Color: Green
+.color-green {
+    color: var(--color-tertiary);
+}
+
+// Color: Red
+.color-red {
+    color: var(--color-secondary);
+}
+
+// Color: Faded light
+.color-light-faded {
+    color: var(--color-light-75);
+}
+
+
 /* Global elements
 ========================================================================== */
-main {
-    position: relative;
-    z-index: 1;
-    background: var(--color-primary);
-}
-
-// Hyphens text
-.hyphens {
-    hyphens: auto;
-    -webkit-hyphens: auto;
-    word-break: break-word;
-}
-
 // Link: Animated underline effect
 .link-underline {
     display: inline-block;

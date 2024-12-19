@@ -7,20 +7,24 @@
         size = 'medium',
         type = 'plain',
         color = 'light',
-        icon,
         children,
+        disabled = false,
+        onclick,
     }: {
         size?: 'small' | 'medium' | 'big'
         type?: 'plain' | 'border'
-        color?: 'light' | 'red' | 'green'
-        icon?: string
+        color?: 'light' | 'red' | 'green' | 'gradient'
         children: Snippet
+        disabled?: boolean
+        onclick?: () => any
     } = $props()
 </script>
 
-<button class="button is-{type} is-{size} is-{color} is-{size}">
-    {#if icon}
-        <svg></svg>
-    {/if}
+<button
+    type="button"
+    class="button is-{type} is-{size} is-{color} is-{size}"
+    {onclick}
+    {disabled}
+>
     <span>{@render children()}</span>
 </button>

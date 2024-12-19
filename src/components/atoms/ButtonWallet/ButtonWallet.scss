@@ -1,0 +1,88 @@
+button {
+    display: inline-flex;
+    align-items: center;
+    font-family: inherit;
+    font-weight: 700;
+    padding: 0;
+    border-radius: 100vh;
+    border: none;
+    cursor: pointer;
+    transition-property: opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: var(--ease-quart);
+
+    span {
+        transition: transform 0.05s ease-out;
+    }
+    & > svg {
+        margin-right: 0.6em;
+        height: 35%;
+        width: auto;
+    }
+    i {
+        display: grid;
+        place-items: center;
+        width: 20px;
+        aspect-ratio: 1;
+        margin-left: 12px;
+        background: var(--color-light-20);
+        border-radius: 100%;
+    }
+
+    // State: Active
+    &:not(:disabled):active {
+        span {
+            transform: scale(0.98);
+        }
+    }
+
+    // Variant: Small size
+    &.is-small {
+        height: 36px;
+        padding-left: 16px;
+        padding-right: 16px;
+        font-size: pxrem(16px);
+        color: var(--color-dark);
+    }
+
+    // Variant: Big size
+    &.is-big {
+        height: 56px;
+        padding-left: 24px;
+        padding-right: 24px;
+        font-size: pxrem(20px);
+        box-shadow: 0 0 0 4px var(--color-light-10);
+        transition: box-shadow 0.3s;
+
+        &:not(:disabled):hover {
+            box-shadow: 0 0 0 5px var(--color-light-20);
+        }
+    }
+
+    // Variant: Plain color
+    &.is-plain {
+        background: var(--color-light);
+    }
+
+    // Variant: Transparent color
+    &.is-transparent {
+        background: var(--color-light-10);
+        color: var(--color-dark);
+    }
+
+    // State: Is connected
+    &.is-connected {
+        color: var(--color-light);
+        background: var(--color-light-10);
+        padding-right: 16px;
+
+        &.is-small {
+            padding-right: 8px;
+            transition: background-color 0.3s;
+
+            &:hover {
+                background-color: var(--color-light-20);
+            }
+        }
+    }
+}

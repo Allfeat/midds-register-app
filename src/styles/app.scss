@@ -1,3 +1,146 @@
 .app {
+    :global(.container > .layout) {
+        grid-template-rows: 2fr 1fr;
+        gap: var(--gutter);
+    }
 
+    // Content block
+    .content {
+        --columns: 11;
+        grid-column: span var(--columns);
+        grid-row: 1 / -1;
+        height: clamp(500px, calc(var(--screen) - 400px), 1000px);
+
+        .inner {
+            grid-column: 2 / -2;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md) 0;
+            align-items: flex-start;
+            min-height: 100%;
+            padding: var(--space-md) 0;
+        }
+        .heading {
+            .icons {
+                display: flex;
+                gap: 12px;
+                margin-bottom: 24px;
+
+                @include bp (sm) {
+                    margin-bottom: 32px;
+                }
+            }
+            h2 {
+                font-weight: 700;
+                margin-bottom: 1em;
+            }
+        }
+
+        // Variant: Is full
+        &.is-full {
+            --columns: inherit;
+            grid-column: 1 / -1;
+        }
+    }
+
+    // Button choices
+    .button-choices {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    // Current entity
+    .current-entity {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    // Form
+    .form {
+        width: 100%;
+    }
+
+    // Space between paragraph and wallet button
+    :global(p + .button-wallet) {
+        margin-top: var(--space-sm);
+    }
+
+    // Result
+    .result {
+        position: relative;
+        min-height: 100%;
+        align-items: center;
+
+        :global(.icon-heading) {
+            margin-bottom: var(--space-sm);
+        }
+        .title {
+            margin: 0 !important;
+        }
+        .heading {
+            grid-column: 3 / span 5;
+        }
+        .pattern {
+            grid-area: 1 / 1 / -1 / -1;
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            mask-image: linear-gradient(180deg, #000 20%, transparent 85%);
+        }
+    }
+
+    // Infos
+    .infos {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        grid-column: 10 / -3;
+    }
+
+    // Pattern block
+    .pattern {
+        grid-column: 12 / -1;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+
+        img {
+            --translate-3d: -50%, -50%, 0;
+            position: absolute;
+            top: 0%;
+            left: 62.5%;
+            transform: var(--translate-3d);
+            pointer-events: none;
+            user-select: none;
+            opacity: 0.2;
+            width: 400%;
+            height: auto;
+            animation: rotate360 120s linear infinite;
+            transform-origin: 17% 47%;
+        }
+
+        // Variant: Is full
+        &.is-full {
+            grid-row: 1 / -1;
+        }
+    }
+
+    // Next block
+    .next {
+        grid-column: 12 / -1;
+        height: 100%;
+        display: grid;
+        place-items: center;
+    }
+}
+
+@keyframes rotate360 {
+    0%, 100% { transform: translate3d(var(--translate-3d)) rotate(5deg); }
+    50% { transform: translate3d(var(--translate-3d)) rotate(80deg); }
 }

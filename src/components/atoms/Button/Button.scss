@@ -1,6 +1,8 @@
 .button {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+    gap: 12px;
     padding: 0 16px;
     border-radius: 64px;
     font-weight: 700;
@@ -9,26 +11,65 @@
     color: #151515;
     border: none;
     cursor: pointer;
+    transition-property: opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: var(--ease-quart);
+
+    span {
+        transition: transform 0.05s ease-out;
+    }
+
+    // State: Active
+    &:not(:disabled):active {
+        span {
+            transform: scale(0.98);
+        }
+    }
+
+    // State: Disabled
+    &:disabled {
+        opacity: 0.25;
+        cursor: not-allowed;
+    }
 
     // Type variant: Plain
     &.is-plain {
-        background: #FFFBEB;
+        --color: var(--color-light);
+        background: var(--color);
     }
 
     // Type variant: Border
     &.is-border {
+        color: var(--color-light);
         background: none;
-        border: 1px solid #FFFBEB;
+        border: 1px solid var(--color-light-20);
+        transition-property: border-color;
+
+        &:hover {
+            border-color: var(--color-light-50);
+        }
     }
 
     // Color variant: Red
     &.is-red {
-        --color: #{$color-red};
+        --color: var(--color-secondary);
     }
 
     // Color variant: Green
     &.is-green {
-        --color: #{$color-green};
+        --color: var(--color-tertiary);
+    }
+
+    // Color variant: Gradient
+    &.is-gradient {
+        background: radial-gradient(100% 320% at 10% -40%, var(--color-tertiary) 0, var(--color-secondary) 100%);
+    }
+
+    // Size variant: Small
+    &.is-small {
+        height: 32px;
+        padding: 0 12px;
+        font-size: pxrem(14px);
     }
 
     // Size variant: Medium
@@ -37,5 +78,20 @@
         gap: 12px;
         padding: 0 16px;
         font-size: pxrem(16px);
+    }
+
+    // Size variant: Big
+    &.is-big {
+        min-width: 180px;
+        height: 56px;
+        padding: 0 24px;
+        font-size: pxrem(20px);
+        color: var(--color-dark);
+        box-shadow: 0 0 0 4px var(--color-light-10);
+        transition: box-shadow 0.3s;
+
+        &:not(:disabled):hover {
+            box-shadow: 0 0 0 5px var(--color-light-20);
+        }
     }
 }

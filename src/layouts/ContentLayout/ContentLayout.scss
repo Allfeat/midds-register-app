@@ -1,0 +1,33 @@
+section {
+    // Block
+    :global(.block) {
+        background: rgba($color-grey, 0.5);
+        border: 1px solid rgba($color-beige, 0.2);
+        backdrop-filter: blur(100px);
+        border-radius: 6px;
+
+        @include bp (sm) {
+            border-radius: 8px;
+        }
+    }
+}
+
+.layout {
+    margin-top: 24px;
+
+    @include bp (sm) {
+        margin-top: 32px;
+    }
+}
+
+// Top
+.top {
+    height: 32px;
+
+    h1 {
+        grid-column: 1 / span 11;
+    }
+    :global(.steps) {
+        grid-column: span 5;
+    }
+}

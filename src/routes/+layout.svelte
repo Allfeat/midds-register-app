@@ -2,11 +2,11 @@
     import 'sanitize.css'
     import '../styles/global.scss'
 
-    import { page } from '$app/stores'
+    import { page } from '$app/state'
     import { afterNavigate, beforeNavigate } from '$app/navigation'
     import { fly, fade } from 'svelte/transition'
     import { quartOut } from 'svelte/easing'
-    import { pageLoading } from '$utils/stores'
+    import { pageLoading } from '$utils/stores.svelte'
     import { DELAY, DURATION } from 'utils/constants'
     import { scrollToTop } from 'utils/scroll'
     // Components
@@ -59,7 +59,7 @@
 <svelte:window bind:innerHeight />
 
 <svelte:head>
-    <link rel="canonical" href={$page.url.href.split('#')[0]} />
+    <link rel="canonical" href={page.url.href.split('#')[0]} />
 
     {#each fonts as font}
         <link rel="preload" href="/fonts/{font}.woff2" as="font" type="font/woff2" crossorigin="anonymous">

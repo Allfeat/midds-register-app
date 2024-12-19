@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28">
+    <style>
+        .spinning {
+            transform-origin: center;
+            animation: spin 2s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+    <g class="spinning">
+        <path fill="#FFFBEB" d="M22.17 18.67 17.5 14H21a7 7 0 0 0-10.27-6.18l-1.7-1.7A9.33 9.33 0 0 1 23.33 14h3.5l-4.66 4.66ZM7 14a7 7 0 0 0 10.27 6.18l1.7 1.7A9.33 9.33 0 0 1 4.67 14h-3.5l4.66-4.66L10.5 14H7Z"/>
+    </g>
+</svg>

@@ -4,13 +4,25 @@
 /* ==========================================================================
    TEXT STYLES
 ========================================================================== */
-// Text: Size
-.text-size {
-    font-size: pxrem(48px);
-    line-height: 1;
+// Text: Medium
+.text-medium {
+    font-size: pxrem(16px);
+    font-weight: 400;
+    line-height: 1.2;
 
     @include bp (sm) {
-        font-size: pxrem(60px);
+        font-size: pxrem(18px);
+    }
+}
+
+// Text: Normal
+.text-normal {
+    font-size: pxrem(14px);
+    font-weight: 400;
+    line-height: 1.2;
+
+    @include bp (sm) {
+        font-size: pxrem(16px);
     }
 }
 
@@ -20,13 +32,23 @@
 /* ==========================================================================
    TITLE STYLES
 ========================================================================== */
-// Title: Size
-.title-size {
-    font-size: pxrem(16px);
+// Title: Medium
+.title-medium {
+    font-family: $font-sans;
+    font-size: pxrem(22px);
+    line-height: 0.95;
     font-weight: 600;
-    line-height: 1.1;
 
     @include bp (sm) {
-        font-size: pxrem(20px);
+        font-size: pxrem(32px);
+    }
+
+    strong {
+        color: var(--color-tertiary);
+    }
+
+    // Variant: Bold
+    &.is-bold {
+        font-weight: 700;
     }
 }

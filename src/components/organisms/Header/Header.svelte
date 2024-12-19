@@ -1,10 +1,8 @@
 <style lang="scss" src="./Header.scss"></style>
 
 <script lang="ts">
-    import Button from '$components/atoms/Button/Button.svelte';
-import Tag from '$components/atoms/Tag/Tag.svelte';
-
-
+    import Tag from '$components/atoms/Tag.svelte'
+    import ButtonWallet from '$components/atoms/ButtonWallet/ButtonWallet.svelte'
 </script>
 
 <header>
@@ -19,7 +17,7 @@ import Tag from '$components/atoms/Tag/Tag.svelte';
                 <Tag color="red">Alpha</Tag>
             </div>
             <nav>
-                <Button>Connect wallet</Button>
+                <ButtonWallet size="small" />
             </nav>
         </div>
     </div>
