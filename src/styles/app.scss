@@ -9,7 +9,7 @@
         --columns: 11;
         grid-column: span var(--columns);
         grid-row: 1 / -1;
-        height: clamp(500px, calc(var(--screen) - 400px), 1000px);
+        min-height: clamp(500px, calc(var(--screen) - 400px), 1000px);
 
         .inner {
             grid-column: 2 / -2;
