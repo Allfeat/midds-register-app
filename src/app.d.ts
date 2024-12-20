@@ -13,8 +13,25 @@ declare global {
     /**
      * Interfaces & types
      */
-    // interface InterfaceName {
-    // }
+    interface Entity {
+        name: string
+        value: string
+        disabled?: boolean
+        tag?: string
+        fields?: {
+            name: string
+            id: string
+            label: string
+            placeholder: string
+            type: 'text' | 'email' | 'number',
+            required?: boolean
+        }[]
+    }
+    interface Metadata {
+        key: string
+        name: string
+        value: string
+    }
 }
 
 export {}

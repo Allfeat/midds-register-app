@@ -3,10 +3,13 @@ import { persistedState } from 'svelte-persisted-state'
 
 // Animations
 export const pageLoading = writable(false)
-export const previousPage = writable('')
 
-// Global
-export const shopVisible = writable(false)
+// Form data
+export const formData = persistedState('form-data', {
+    step: 0,
+    entity: null as Entity,
+    metadatas: [] as Metadata[],
+}, { storage: 'local' })
 
 // Connected
 export let connected = persistedState('connected', false, { storage: 'local' })
@@ -16,4 +19,3 @@ export let currentWallet = persistedState('currentWallet', null, { storage: 'loc
 
 // Steps
 export const steps = ['intro', 'entity', 'information', 'confirmation', 'sending', 'result'] as const
-export let currentStep = persistedState('step', 0, { storage: 'local' })

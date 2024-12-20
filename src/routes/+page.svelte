@@ -1,7 +1,7 @@
 <style lang="scss" src="../styles/app.scss"></style>
 
 <script lang="ts">
-    import { connected, currentStep, currentWallet, steps } from '$utils/stores.svelte'
+    import { connected, formData, currentWallet, steps } from '$utils/stores.svelte'
     // Components
     import Metas from '$components/Metas.svelte'
     import ContentLayout from '$layouts/ContentLayout/ContentLayout.svelte'
@@ -18,46 +18,61 @@
     // let { data } = $props()
 
     // Steps
-    const step = $derived(steps[currentStep.value])
+    const step = $derived(steps[formData.value.step])
     const isStep = (steps: string[]) => steps.includes(step)
     let isEnded = $state(false)
 
     /** Go to next step until end */
     const nextStep = () => {
-        if (currentStep.value >= steps.length - 1) return
-        currentStep.value++
+        if (formData.value.step >= steps.length - 1) return
+        formData.value.step++
 
         // If last step, set isEnded to true
         if (step === 'result') {
             isEnded = true
-            currentStep.value = 0
+            formData.reset()
         }
     }
 
     // Entities
-    const entities = [
-        { name: 'Stakeholder', value: 'stakeholder' },
-        { name: 'Musical Work', value: 'musical-work' },
-        { name: 'Artist', value: 'artist', disabled: true, tag: 'Soon' },
+    const entities: Entity[] = [
+        {
+            name: 'Stakeholder',
+            value: 'stakeholder',
+            fields: [
+                { label: 'Full Name', placeholder: 'Enter full name', type: 'text', required: true, name: 'fullName', id: 'fullName' },
+                { label: 'Email', placeholder: 'Enter email address', type: 'email', required: true, name: 'email', id: 'email' },
+                { label: 'Role', placeholder: 'Enter role', type: 'text', required: true, name: 'role', id: 'role' },
+            ],
+        },
+        {
+            name: 'Musical Work',
+            value: 'musical-work',
+            fields: [
+                { label: 'Title', placeholder: 'Enter title', type: 'text', required: true, name: 'title', id: 'title' },
+                { label: 'Composer', placeholder: 'Enter composer name', type: 'text', required: true, name: 'composer', id: 'composer' },
+                { label: 'Year', placeholder: 'Enter year', type: 'number', required: true, name: 'year', id: 'year' },
+            ],
+        },
+        {
+            name: 'Artist',
+            value: 'artist',
+            disabled: true,
+            tag: 'Soon',
+        },
     ]
-    let currentEntity = $state<typeof entities[number] | null>()
 
     /** Change current entity */
-    const changeEntity = (entity: typeof entities[number]) => {
-        currentEntity = entity
-    }
+    const changeEntity = (entity: Entity) => {
+        formData.value.entity = entity
 
-    // Fields and Metadatas
-    const formFields = [
-        { label: 'Field 1', placeholder: 'Enter your metadata value', type: 'text', required: true, name: 'field1', id: 'field1' },
-        { label: 'Field 2', placeholder: 'Enter your metadata value', type: 'text', required: true, name: 'field2', id: 'field2' },
-        { label: 'Field 3', placeholder: 'Enter your metadata value', type: 'text', required: true, name: 'field3', id: 'field3' },
-    ]
-    let metadatas = $state({
-        field1: '',
-        field2: '',
-        field3: '',
-    })
+        // Initialize metadata fields for the selected entity
+        formData.value.metadatas = entity.fields?.map(({ name, label }) => ({
+            key: name,
+            name: label,
+            value: '',
+        }))
+    }
 
     // Wallet
     /** Connect wallet */
@@ -80,7 +95,6 @@
     description=""
     image=""
 />
-
 
 <main class="app">
     <ContentLayout title="MIDDS Registration">
@@ -108,7 +122,7 @@
                         <div class="button-choices">
                             {#each entities as entity (entity.value)}
                                 <ButtonChoice
-                                    active={currentEntity?.value === entity.value}
+                                    active={formData.value.entity?.value === entity.value}
                                     disabled={entity.disabled}
                                     onclick={() => changeEntity(entity)}
                                 >
@@ -126,18 +140,21 @@
                         <HeadingIcon title="Fill your metadata informations" icon="info" />
 
                         <p class="current-entity text-normal">
-                            Your entity: <Tag color="light">{currentEntity?.name}</Tag>
+                            Your entity: <Tag color="light">{formData.value.entity?.name}</Tag>
                         </p>
 
-                        <form class="form">
-                            {#each formFields as field (field.name)}
-                                <Field
-                                    {...field}
-                                    type={field.type as any}
-                                    bind:value={metadatas[field.name]}
-                                />
-                            {/each}
-                        </form>
+                        {#if formData.value.entity.fields?.length}
+                            <form class="form">
+                                {#each formData.value.entity.fields as field (field.name)}
+                                    {@const metadata = formData.value.metadatas.find(meta => meta.key === field.name)}
+                                    <Field
+                                        {...field}
+                                        type={field.type as any}
+                                        bind:value={metadata.value}
+                                    />
+                                {/each}
+                            </form>
+                        {/if}
                     </div>
 
                 {:else if step === 'confirmation'}
@@ -149,15 +166,14 @@
                                 <p class="text-normal color-light-faded">Please connect a wallet and select the account to use to continue:</p>
                                 <ButtonWallet size="big" onclick={handleWalletConnect} />
                             </div>
-                        {:else if metadatas?.field1}
+                        {:else if formData.value.metadatas[0]}
                             <p class="text-normal color-light-faded">Review your MIDDS information to confirm your registration:</p>
 
                             <Table
-                                fields={[
-                                    { label: 'Field 1', value: metadatas.field1 },
-                                    { label: 'Field 2', value: metadatas.field2 },
-                                    { label: 'Field 3', value: metadatas.field3 },
-                                ]}
+                                fields={formData.value?.metadatas?.map(({ name, value }) => ({
+                                    label: name,
+                                    value,
+                                }))}
                             />
 
                             <div>
@@ -207,7 +223,7 @@
                         Get Started
                     </Button>
                 {:else}
-                    <Button size="big" color="green" onclick={nextStep} disabled={!currentEntity || currentStep.value > 2 && !connected.value}>
+                    <Button size="big" color="green" onclick={nextStep} disabled={!formData.value.entity || formData.value.step > 2 && !connected.value}>
                         Continue
                     </Button>
                 {/if}

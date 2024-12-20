@@ -2,7 +2,7 @@
 
 <script lang="ts">
     import type { Snippet } from 'svelte'
-    import { currentStep, steps } from '$utils/stores.svelte'
+    import { formData, steps } from '$utils/stores.svelte'
     // Components
     import Steps from '$components/molecules/Steps/Steps.svelte'
 
@@ -20,7 +20,7 @@
         <div class="top grid">
             <h1 class="title-medium color-green">{title}</h1>
 
-            {#if currentStep.value > 0 && currentStep.value < steps.length - 1}
+            {#if formData.value.step > 0 && formData.value.step < steps.length - 1}
                 <Steps />
             {/if}
         </div>
