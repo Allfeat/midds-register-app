@@ -38,6 +38,8 @@ const config = {
             $animations: 'src/animations',
             $utils: 'src/utils',
             $style: 'src/style',
+            '@polkadot/api/augment': 'src/interfaces/augment-api.ts',
+            '@polkadot/types/augment': 'src/interfaces/augment-types.ts'
         },
         prerender: {
             handleMissingId: 'ignore',

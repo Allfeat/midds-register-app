@@ -15,6 +15,9 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@polkadot/api": "^15.2.1",
+    "@polkadot/extension-dapp": "^0.57.1",
+    "@polkadot/typegen": "^15.2.1",
     "animejs": "file:packages/animejs/animejs-4.0.0.beta-102.tgz",
     "classix": "^2.2.0",
     "sanitize.css": "^13.0.0",

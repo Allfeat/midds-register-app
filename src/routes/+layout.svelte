@@ -6,9 +6,9 @@
     import { afterNavigate, beforeNavigate } from '$app/navigation'
     import { fly, fade } from 'svelte/transition'
     import { quartOut } from 'svelte/easing'
-    import { pageLoading } from '$utils/stores.svelte'
     import { DELAY, DURATION } from 'utils/constants'
     import { scrollToTop } from 'utils/scroll'
+    import { appState } from '$utils/states.svelte'
     // Components
     import Header from '$components/organisms/Header/Header.svelte'
     import Footer from '$components/organisms/Footer/Footer.svelte'
@@ -27,14 +27,14 @@
      */
     beforeNavigate(({ from, to }) => {
         // Enable page loading state if URL changed
-        if (from.route.id !== to.route.id) {
-            $pageLoading = true
+        if (from?.route.id !== to?.route.id) {
+            appState.isLoading = true
         }
     })
 
     afterNavigate(({ from }) => {
         // Remove page loading state
-        setTimeout(() => $pageLoading = false, DELAY.PAGE_LOADING)
+        setTimeout(() => appState.isLoading = false, DELAY.PAGE_LOADING)
 
         // Scroll back to top when new page is ready
         if (from?.url?.pathname) {
@@ -47,7 +47,7 @@
         innerHeight && document.body.style.setProperty('--vh', `${innerHeight}px`)
 
         // Define page loading
-        document.body.classList.toggle('is-loading', $pageLoading)
+        document.body.classList.toggle('is-loading', appState.isLoading)
         // Block scroll on certain conditions
         // document.body.classList.toggle('block-scroll', condition)
 

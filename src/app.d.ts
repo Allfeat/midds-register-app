@@ -3,31 +3,9 @@
 // and what to do when importing types
 declare global {
 	namespace App {
-        // interface Locals {}
-        // interface PageData {}
-        // interface Error {}
-        // interface Platform {}
     }
 
-
-    /**
-     * Interfaces & types
-     */
-    interface Entity {
-        name: string
-        value: string
-        disabled?: boolean
-        tag?: string
-        fields?: {
-            name: string
-            id: string
-            label: string
-            placeholder: string
-            type: 'text' | 'email' | 'number',
-            required?: boolean
-        }[]
-    }
-    interface Metadata {
+    interface IMetadata {
         key: string
         name: string
         value: string
