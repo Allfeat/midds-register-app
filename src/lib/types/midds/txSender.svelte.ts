@@ -3,7 +3,6 @@ import { ApiPromise, WsProvider } from '@polkadot/api'
 import type { InjectedAccountWithMeta } from '@polkadot/extension-inject/types'
 import { web3FromAddress } from '@polkadot/extension-dapp'
 import { ResultState } from '$utils/states.svelte'
-import type { Hash } from '@polkadot/types/interfaces/runtime'
 
 export class TxSender<T extends IMiddsEntity> {
     midds_data: T
@@ -42,10 +41,6 @@ export class TxSender<T extends IMiddsEntity> {
 
                     if (status.isInBlock) {
                         console.log(`✅ Transaction included in block ${status.asInBlock}`)
-                    }
-
-                    if (status.isFinalized) {
-                        this.status = TxSenderStatus.TxFinalized
 
                         const extrinsicFailed = events.some(
                             (eventRecord) =>
@@ -56,7 +51,7 @@ export class TxSender<T extends IMiddsEntity> {
                             return
                         }
                         else {
-                            const result = new ResultState(extractMiddsHashFromEvents(events), txHash.toString(), status.asFinalized.toString())
+                            const result = new ResultState(extractMiddsHashFromEvents(events), txHash.toString(), status.asInBlock.toString())
                             resolve(result)
                         }
                     }
@@ -81,7 +76,6 @@ export enum TxSenderStatus {
     TxCreated,
     TxSigned,
     TxSended,
-    TxFinalized
 }
 
 function extractMiddsHashFromEvents(events: EventRecord[]): string {

@@ -12,13 +12,11 @@
         appState.resultState = result
         appState.goToNextStep()
     })
-
-    console.log(sender)
 </script>
 
 <div class="inner">
     <HeadingIcon title="Registering MIDDS…" icon="loading"/>
-    <p class="text-normal color-light-faded">
+    <p class="text-medium color-light-faded">
         {#if sender.status === TxSenderStatus.Init}
             Contacting the blockchain node provider...
             {:else if sender.status === TxSenderStatus.ApiReady}
@@ -30,7 +28,7 @@
             {:else if sender.status === TxSenderStatus.TxSigned}
                 Sending the transaction to the chain...
             {:else if sender.status === TxSenderStatus.TxSended}
-                Success !
+                Waiting for inclusion in the block...
             {:else}
                 Unexpected Error
         {/if}

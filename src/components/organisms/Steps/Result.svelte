@@ -7,9 +7,9 @@
 
     function shortenHash(hash: string): string {
         return (
-            hash.substring(0, 7) +
+            hash.substring(0, 12) +
             '...' +
-            hash.substring(hash.length - 5)
+            hash.substring(hash.length - 6)
         )
     }
 </script>
