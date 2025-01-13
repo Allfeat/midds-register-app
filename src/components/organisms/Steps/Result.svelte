@@ -1,9 +1,9 @@
 <script lang="ts">
     import IconHeading from '$components/atoms/IconHeading.svelte'
     import InfoBox from '$components/molecules/InfoBox.svelte'
-    import type { ResultState } from '$utils/states.svelte'
+    import type { IRegisterResult } from '@allfeat/sdk'
 
-    const { result }: { result: ResultState } = $props()
+    const { result }: { result: IRegisterResult } = $props()
 
     function shortenHash(hash: string): string {
         return (
@@ -38,7 +38,7 @@
         <InfoBox
                 icon="hash"
                 label="Block Number"
-                value={shortenHash(result.blockNumber)}
+                value={result.blockNumber.toString()}
                 link="https://etherscan.io"
         />
     </div>

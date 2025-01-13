@@ -1,11 +1,11 @@
 <script lang="ts">
     import Tag from '$components/atoms/Tag.svelte'
     import HeadingIcon from '$components/molecules/HeadingIcon.svelte'
-    import type { IMiddsEntity } from '$lib/types/midds/entity.svelte'
     import { appState } from '$utils/states.svelte'
     import Field from '$components/atoms/Field/Field.svelte'
+    import type { IMidds, StakeholderInputs } from '@allfeat/sdk'
 
-    const currentEntity: IMiddsEntity | null = $derived(appState.selectedMiddsEntity)
+    const currentEntity: IMidds<StakeholderInputs> | null = $derived(appState.selectedMiddsEntity)
 </script>
 
 <div class="inner">
@@ -13,12 +13,12 @@
 
     <p class="current-entity text-normal">
         Your entity:
-        <Tag color="light">{currentEntity?.name}</Tag>
+        <Tag color="light">{currentEntity?.constructor.name}</Tag>
     </p>
 
-    {#if currentEntity?.fields.length}
+    {#if currentEntity && Object.values(currentEntity.inputs).length}
         <form class="form">
-            {#each currentEntity.fields as field}
+            {#each Object.values(currentEntity.inputs) as field}
                 <Field entityField={field} />
                 <!-- <Field -->
                 <!--   {...field} -->

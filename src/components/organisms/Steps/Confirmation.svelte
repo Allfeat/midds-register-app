@@ -15,15 +15,15 @@
             </p>
             <ButtonWallet size="big" />
         </div>
-    {:else if appState.selectedMiddsEntity?.fields[0]}
+    {:else if appState.selectedMiddsEntity?.isValid}
         <p class="text-normal color-light-faded">
             Review your MIDDS information to confirm your registration:
         </p>
 
         <Table
-                fields={appState.selectedMiddsEntity.fields?.map(({ name, value }) => ({
-                    label: name,
-                    value: value ? value.toString() : '',
+                fields={Object.values(appState.selectedMiddsEntity.inputs).map((input) => ({
+                    label: input.Name,
+                    value: input.Value ? input.Value.toString() : '',
                 }))}
         />
 

@@ -1,13 +1,13 @@
 import { AppSteps } from '$lib/types/steps'
 import { web3Accounts, web3Enable } from '@polkadot/extension-dapp'
-import type { IMiddsEntity } from '$lib/types/midds/entity.svelte'
 import type { InjectedAccountWithMeta, InjectedExtension } from '@polkadot/extension-inject/types'
+import type { IRegisterResult, IMidds, StakeholderInputs } from '@allfeat/sdk'
 
 class AppState {
     currentStep: AppSteps = $state(AppSteps.Intro)
-    selectedMiddsEntity: IMiddsEntity | null = $state(null)
+    selectedMiddsEntity:  IMidds<StakeholderInputs> | null = $state(null)
     walletState: WalletState = new WalletState()
-    resultState: ResultState | null = $state(null)
+    resultState: IRegisterResult | null = $state(null)
     isLoading: boolean = $state(false)
 
     goToPreviousStep() {
@@ -21,18 +21,6 @@ class AppState {
             this.currentStep++
             console.log(this.currentStep)
         }
-    }
-}
-
-export class ResultState {
-    middsHash: string
-    txHash: string
-    blockNumber: string
-
-    constructor(middsHash: string, txHash: string, blockNumber: string) {
-        this.middsHash = middsHash
-        this.txHash = txHash
-        this.blockNumber = blockNumber
     }
 }
 

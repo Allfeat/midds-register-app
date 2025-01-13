@@ -42,11 +42,6 @@ li {
         color: var(--color-light);
         background: var(--color-light-20);
         border-color: transparent;
-
-        &:hover {
-            color: var(--color-dark);
-            background-color: var(--color-light-50);
-        }
     }
 }
 

@@ -38,10 +38,10 @@ export class MusicalWorkMiddsEntity extends MiddsEntity {
 export class StakeholderMiddsEntity extends MiddsEntity {
     constructor() {
         super('Stakeholder', [
-            new MiddsEntityField<string>('IPI Number', 'Enter the IPI Name Number', '', new RegExp('(\\d{2})[-\\s]?(\\d{3})[-\\s]?(\\d{3})[-\\s]?(\\d{1,3})$')),
-            new MiddsEntityField<string>('First Name', 'Enter First Name', '', null),
-            new MiddsEntityField<string>('Last Name', 'Enter Last Name', '', null),
-            new MiddsEntityField<string>('Nickname', 'Enter Nickname', '', null),
+            new MiddsEntityField<string>('IPI Number', 'Enter the IPI Name Number', '', new RegExp('^\\d{2}[-\\s]?\\d{3}[-\\s]?\\d{3}[-\\s]?\\d{1,3}$')),
+            new MiddsEntityField<string>('First Name', 'Enter First Name', '', new RegExp('^.{0,128}$')),
+            new MiddsEntityField<string>('Last Name', 'Enter Last Name', '', new RegExp('^.{0,128}$')),
+            new MiddsEntityField<string>('Nickname', 'Enter Nickname', '', new RegExp('^.{0,128}$')),
         ])
     }
 

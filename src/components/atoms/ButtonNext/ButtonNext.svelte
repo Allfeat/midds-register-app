@@ -10,7 +10,7 @@
         if (appState.currentStep === AppSteps.Entity) {
             disableButton = !appState.selectedMiddsEntity
         } else if (appState.currentStep === AppSteps.Information) {
-            disableButton = !appState.selectedMiddsEntity?.fieldsValueAreValid
+            disableButton = false
         } else if (appState.currentStep === AppSteps.Confirmation) {
             disableButton =  !appState.walletState.connected
         }

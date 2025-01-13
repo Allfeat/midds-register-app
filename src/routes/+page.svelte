@@ -2,7 +2,6 @@
     // Components
     import Metas from '$components/Metas.svelte'
     import ContentLayout from '$layouts/ContentLayout/ContentLayout.svelte'
-    import Button from '$components/atoms/Button/Button.svelte'
     import Intro from '$components/organisms/Steps/Intro.svelte'
     import MiddsSelection from '$components/organisms/Steps/MiddsSelection.svelte'
     import MiddsFill from '$components/organisms/Steps/MiddsFill.svelte'
@@ -16,7 +15,6 @@
     // Steps
     const step: AppSteps = $derived(appState.currentStep)
     let isEnded: boolean = $derived(appState.currentStep === AppSteps.Result && appState.resultState !== null)
-    let printNextButton: boolean = $derived((step === AppSteps.Sending || AppSteps.Result) && !isEnded)
 </script>
 
 <Metas title="MIDDS" description="" image=""/>

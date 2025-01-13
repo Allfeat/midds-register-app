@@ -1,14 +1,24 @@
 <script lang="ts">
-    import type { IMiddsEntityField, MiddsEntityFieldType } from '$lib/types/midds/entity.svelte'
+    import type { IMiddsInput } from '@allfeat/sdk'
 
-    let { entityField = $bindable() }: { entityField: IMiddsEntityField<MiddsEntityFieldType> } = $props()
+    let { entityField = $bindable() }: { entityField: IMiddsInput<string | number, any> } = $props()
+    let value: string | number | null = $state(null)
+    let isValid: boolean = $state(true)
+
+    value = entityField.Value
+    isValid = entityField.isValid
+
+    $effect(() => {
+        entityField.Value = value
+        isValid = entityField.isValid
+    })
 </script>
 
 <div class="field">
-    <p class="text-normal"><label for={entityField.id}>{entityField.label}</label></p>
-    <input class={entityField.valueIsValid ? '' : 'invalid-value'} type={typeof entityField.value} id={entityField.id} name={entityField.name}
-           placeholder={entityField.placeholder} bind:value={entityField.value}>
-    {#if !entityField.valueIsValid}
+    <p class="text-normal"><label for={entityField.Name}>{entityField.Name}</label></p>
+    <input class={isValid ? '' : 'invalid-value'} type={typeof entityField.Value} id={entityField.Name} name={entityField.Name}
+           bind:value >
+    {#if !isValid}
         <p class="invalid">Invalid value</p>
     {/if}
 </div>

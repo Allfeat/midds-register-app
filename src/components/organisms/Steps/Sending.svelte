@@ -1,11 +1,11 @@
 <script lang="ts">
     import HeadingIcon from '$components/molecules/HeadingIcon.svelte'
-    import { type IMiddsEntity } from '$lib/types/midds/entity.svelte'
-    import { TxSender, TxSenderStatus } from '$lib/types/midds/txSender.svelte'
     import type { InjectedAccountWithMeta } from '@polkadot/extension-inject/types'
     import { appState } from '$utils/states.svelte'
+    import type { IMidds, StakeholderInputs } from '@allfeat/sdk'
+    import { TxSender, TxSenderStatus } from '$lib/types/midds/txSender.svelte'
 
-    const { midds, account }: { midds: IMiddsEntity, account: InjectedAccountWithMeta } = $props()
+    const { midds, account }: { midds: IMidds<StakeholderInputs>, account: InjectedAccountWithMeta } = $props()
 
     const sender = new TxSender(midds, account)
     sender.execute().then((result) => {
