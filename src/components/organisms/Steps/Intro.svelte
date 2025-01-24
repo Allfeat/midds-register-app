@@ -18,12 +18,10 @@
     </div>
     <div class="text text-medium color-light-faded">
         <p>
-            Vestibulum quis sem vehicula metus pellentesque fermentum. Aenean
-            consequat libero pellentesque sollicitudin convallis. Proin fringilla
-            hendrerit massa a ullamcorper. Nulla commodo malesuada ligula ac
-            malesuada. In suscipit ullamcorper dui ac lobortis. Aliquam semper viverra
-            sapien, sit amet suscipit tellus ultricies id. Vivamus lacinia tortor
-            augue, sit amet vehicula risus viverra sed.
+            MIDDS offer a revolutionary way to store music data on a decentralized network.
+            These data structures are tailored to meet the music industry's needs while remaining lightweight for a decentralized environment.
+            This application is your gateway to Allfeat and MIDDS, enabling you to register your first metadata on the network.
+            Click the button below and follow the guided steps to successfully register your MIDDS on the network.
         </p>
     </div>
     <Button size="big" color="gradient" onclick={() => appState.currentStep = AppSteps.Entity}>

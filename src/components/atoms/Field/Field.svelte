@@ -1,26 +1,56 @@
 <script lang="ts">
-    import type { IMiddsInput } from '@allfeat/sdk'
+  import {
+    IPINameNumber,
+    ISWC,
+    MusicalWorkDuration,
+    MusicalWorkType,
+    type IMiddsInput,
+  } from "@allfeat/sdk";
+  import IswcField from "../Fields/ISWCField.svelte";
+  import DurationField from "../Fields/DurationField.svelte";
+  import MusicalWorkTypeField from "../Fields/MusicalWorkTypeField.svelte";
+  import IpiNameNumberField from "../Fields/IPINameNumberField.svelte";
 
-    let { entityField = $bindable() }: { entityField: IMiddsInput<string | number, any> } = $props()
-    let value: string | number | null = $state(null)
-    let isValid: boolean = $state(true)
+  let {
+    entityField = $bindable(),
+  }: { entityField: IMiddsInput<string | number, any> } = $props();
+  let value: string | number | null = $state(null);
+  let isValid: boolean = $state(true);
 
-    value = entityField.Value
-    isValid = entityField.isValid
+  value = entityField.Value;
+  isValid = entityField.isValid;
 
-    $effect(() => {
-        entityField.Value = value
-        isValid = entityField.isValid
-    })
+  $effect(() => {
+    entityField.Value = value;
+    isValid = entityField.isValid;
+  });
 </script>
 
 <div class="field">
-    <p class="text-normal"><label for={entityField.Name}>{entityField.Name}</label></p>
-    <input class={isValid ? '' : 'invalid-value'} type={typeof entityField.Value} id={entityField.Name} name={entityField.Name}
-           bind:value >
+  <p class="text-normal">
+    <label for={entityField.Name}>{entityField.Name}</label>
+  </p>
+
+  {#if entityField instanceof ISWC}
+    <IswcField iswcField={entityField} />
+  {:else if entityField instanceof MusicalWorkDuration}
+    <DurationField durationInput={entityField} />
+  {:else if entityField instanceof MusicalWorkType}
+    <MusicalWorkTypeField musicalWorkTypeInput={entityField} />
+  {:else if entityField instanceof IPINameNumber}
+    <IpiNameNumberField ipiInput={entityField} />
+  {:else}
+    <input
+      class={isValid ? "" : "invalid-value"}
+      type={typeof entityField.Value}
+      id={entityField.Name}
+      name={entityField.Name}
+      bind:value
+    />
     {#if !isValid}
-        <p class="invalid">Invalid value</p>
+      <p class="invalid">Invalid value</p>
     {/if}
+  {/if}
 </div>
 
 <style lang="scss">
@@ -33,7 +63,7 @@
 
     &.invalid {
       font-size: small;
-      color: var(--color-secondary)
+      color: var(--color-secondary);
     }
   }
 
@@ -55,13 +85,14 @@
     color: var(--color-light);
     transition: border-color 0.3s;
 
-
     &::placeholder {
       opacity: 1;
       color: var(--color-light-50);
     }
 
-    &:hover, &:focus, &:active {
+    &:hover,
+    &:focus,
+    &:active {
       border-color: var(--color-light-50);
     }
 

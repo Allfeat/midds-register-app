@@ -1,11 +1,11 @@
 import { AppSteps } from '$lib/types/steps'
 import { web3Accounts, web3Enable } from '@polkadot/extension-dapp'
 import type { InjectedAccountWithMeta, InjectedExtension } from '@polkadot/extension-inject/types'
-import type { IRegisterResult, IMidds, StakeholderInputs } from '@allfeat/sdk'
+import type { IRegisterResult, IMidds, MiddsInputs } from '@allfeat/sdk'
 
 class AppState {
     currentStep: AppSteps = $state(AppSteps.Intro)
-    selectedMiddsEntity:  IMidds<StakeholderInputs> | null = $state(null)
+    selectedMiddsEntity:  IMidds<MiddsInputs> | null = $state(null)
     walletState: WalletState = new WalletState()
     resultState: IRegisterResult | null = $state(null)
     isLoading: boolean = $state(false)

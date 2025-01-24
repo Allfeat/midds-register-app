@@ -1,13 +1,19 @@
 import type { InjectedAccountWithMeta } from '@polkadot/extension-inject/types'
 import { web3FromAddress } from '@polkadot/extension-dapp'
-import { AllfeatClient, AllfeatProvider, type IMidds, type IRegisterResult, type StakeholderInputs } from '@allfeat/sdk'
+import {
+    AllfeatClient,
+    AllfeatProvider,
+    type IMidds,
+    type IRegisterResult,
+    type MiddsInputs,
+} from '@allfeat/sdk'
 
 export class TxSender {
-    midds: IMidds<StakeholderInputs>
+    midds: IMidds<MiddsInputs>
     account: InjectedAccountWithMeta
     status: TxSenderStatus = $state(TxSenderStatus.Init)
 
-    constructor(midds_data: IMidds<StakeholderInputs>, account: InjectedAccountWithMeta) {
+    constructor(midds_data: IMidds<MiddsInputs>, account: InjectedAccountWithMeta) {
         this.midds = midds_data
         this.account = account
     }

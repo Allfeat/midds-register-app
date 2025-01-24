@@ -3,9 +3,9 @@
     import HeadingIcon from '$components/molecules/HeadingIcon.svelte'
     import { appState } from '$utils/states.svelte'
     import Field from '$components/atoms/Field/Field.svelte'
-    import type { IMidds, StakeholderInputs } from '@allfeat/sdk'
+    import type { IMidds, MiddsInputs } from '@allfeat/sdk'
 
-    const currentEntity: IMidds<StakeholderInputs> | null = $derived(appState.selectedMiddsEntity)
+    const currentEntity: IMidds<MiddsInputs> | null = $derived(appState.selectedMiddsEntity)
 </script>
 
 <div class="inner">

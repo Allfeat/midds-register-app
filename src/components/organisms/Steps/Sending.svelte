@@ -2,10 +2,10 @@
     import HeadingIcon from '$components/molecules/HeadingIcon.svelte'
     import type { InjectedAccountWithMeta } from '@polkadot/extension-inject/types'
     import { appState } from '$utils/states.svelte'
-    import type { IMidds, StakeholderInputs } from '@allfeat/sdk'
+    import type { IMidds, MiddsInputs } from '@allfeat/sdk'
     import { TxSender, TxSenderStatus } from '$lib/types/midds/txSender.svelte'
 
-    const { midds, account }: { midds: IMidds<StakeholderInputs>, account: InjectedAccountWithMeta } = $props()
+    const { midds, account }: { midds: IMidds<MiddsInputs>, account: InjectedAccountWithMeta } = $props()
 
     const sender = new TxSender(midds, account)
     sender.execute().then((result) => {
