@@ -37,8 +37,6 @@
     <DurationField durationInput={entityField} />
   {:else if entityField instanceof MusicalWorkType}
     <MusicalWorkTypeField musicalWorkTypeInput={entityField} />
-  {:else if entityField instanceof IPINameNumber}
-    <IpiNameNumberField ipiInput={entityField} />
   {:else}
     <input
       class={isValid ? "" : "invalid-value"}
