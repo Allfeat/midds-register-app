@@ -12,7 +12,16 @@
       >
       • <span>Music Better With You</span>
     </p>
-    <p class="version">MIDDS.registration.v{__APP_VERSION__}</p>
+    <div class="right">
+      <a
+        href="https://github.com/Allfeat/midds-register-app/issues"
+        target="_blank"
+        rel="noopener"
+        class="github link-underline">Submit an issue</a
+      >
+      |
+      <p class="version">MIDDS.registration.v{__APP_VERSION__}</p>
+    </div>
   </div>
 </footer>
 
