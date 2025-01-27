@@ -4,12 +4,14 @@
     ISWC,
     MusicalWorkDuration,
     MusicalWorkType,
+    Shares,
     type IMiddsInput,
   } from "@allfeat/sdk";
   import IswcField from "../Fields/ISWCField.svelte";
   import DurationField from "../Fields/DurationField.svelte";
   import MusicalWorkTypeField from "../Fields/MusicalWorkTypeField.svelte";
   import IpiNameNumberField from "../Fields/IPINameNumberField.svelte";
+  import SharesField from "../Fields/SharesField.svelte";
 
   let {
     entityField = $bindable(),
@@ -37,6 +39,8 @@
     <DurationField durationInput={entityField} />
   {:else if entityField instanceof MusicalWorkType}
     <MusicalWorkTypeField musicalWorkTypeInput={entityField} />
+  {:else if entityField instanceof Shares}
+    <SharesField sharesInput={entityField} />
   {:else}
     <input
       class={isValid ? "" : "invalid-value"}

@@ -13,14 +13,16 @@
 <div class="inner">
   <HeadingIcon title="Fill your metadata informations" icon="info" />
 
-  <p class="current-entity text-normal">
-    Your entity:
-    <Tag color="light">{currentEntity?.constructor.name}</Tag>
-  </p>
-  <p class="remark">
-    (All fields are optionnals but AT LEAST ONE should be filled to submit a new
-    MIDDS.)
-  </p>
+  <div>
+    <p class="current-entity text-normal">
+      Your entity:
+      <Tag color="light">{currentEntity?.constructor.name}</Tag>
+    </p>
+    <p class="remark">
+      (All fields are optionnals but AT LEAST ONE should be filled to submit a
+      new MIDDS.)
+    </p>
+  </div>
 
   {#if currentEntity && Object.values(currentEntity.inputs).length}
     <form class="form">
