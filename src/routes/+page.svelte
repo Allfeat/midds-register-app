@@ -32,8 +32,11 @@
           <Intro />
         {:else if step === AppSteps.Entity}
           <MiddsSelection />
-        {:else if step === AppSteps.Information && appState.selectedMiddsEntity}
-          <MiddsFill bind:currentEntity={appState.selectedMiddsEntity} />
+        {:else if step === AppSteps.Information && appState.selectedMiddsEntity && appState.selectedMiddsEntityName}
+          <MiddsFill
+            bind:currentEntity={appState.selectedMiddsEntity}
+            currentEntityName={appState.selectedMiddsEntityName}
+          />
         {:else if step === AppSteps.Confirmation}
           <Confirmation />
         {:else if step === AppSteps.Sending}

@@ -10,7 +10,9 @@
 
   const {
     currentEntity = $bindable(),
-  }: { currentEntity: IMidds<MiddsInputs> } = $props();
+    currentEntityName,
+  }: { currentEntity: IMidds<MiddsInputs>; currentEntityName: string } =
+    $props();
 
   let fields: IMiddsInput<any, any>[] = $derived(
     Object.values(currentEntity?.inputs),
@@ -23,7 +25,7 @@
   <div>
     <p class="current-entity text-normal">
       Your entity:
-      <Tag color="light">{currentEntity?.constructor.name}</Tag>
+      <Tag color="light">{currentEntityName}</Tag>
     </p>
     <p class="remark">
       (All fields are optionnals but AT LEAST ONE should be filled to submit a
