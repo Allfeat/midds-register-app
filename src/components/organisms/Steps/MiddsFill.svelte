@@ -1,12 +1,19 @@
 <script lang="ts">
   import Tag from "$components/atoms/Tag.svelte";
   import HeadingIcon from "$components/molecules/HeadingIcon.svelte";
-  import { appState } from "$utils/states.svelte";
   import Field from "$components/atoms/Field/Field.svelte";
-  import type { IMidds, MiddsInputs } from "@allfeat/sdk";
+  import {
+    type IMidds,
+    type IMiddsInput,
+    type MiddsInputs,
+  } from "@allfeat/sdk";
 
-  const currentEntity: IMidds<MiddsInputs> | null = $derived(
-    appState.selectedMiddsEntity,
+  const {
+    currentEntity = $bindable(),
+  }: { currentEntity: IMidds<MiddsInputs> } = $props();
+
+  let fields: IMiddsInput<any, any>[] = $derived(
+    Object.values(currentEntity?.inputs),
   );
 </script>
 
@@ -24,9 +31,9 @@
     </p>
   </div>
 
-  {#if currentEntity && Object.values(currentEntity.inputs).length}
+  {#if currentEntity && fields.length}
     <form class="form">
-      {#each Object.values(currentEntity.inputs) as field}
+      {#each fields as field}
         <Field entityField={field} />
         <!-- <Field -->
         <!--   {...field} -->

@@ -23,34 +23,36 @@
   });
 </script>
 
-T-<input
-  class="iswcGroup"
-  id="group1"
-  type="number"
-  min="0"
-  max="999"
-  bind:value={group1}
-/>.<input
-  class="iswcGroup"
-  id="group2"
-  type="number"
-  min="0"
-  max="999"
-  bind:value={group2}
-/>.<input
-  class="iswcGroup"
-  id="group3"
-  type="number"
-  min="0"
-  max="999"
-  bind:value={group3}
-/>-<input
-  class="iswcCheck"
-  id="checkDigit"
-  type="number"
-  min="0"
-  max="9"
-  bind:value={checkDigit}
-/>
+<div>
+  T-<input
+    class="iswcGroup"
+    id="group1"
+    type="number"
+    min="0"
+    max="999"
+    bind:value={group1}
+  />.<input
+    class="iswcGroup"
+    id="group2"
+    type="number"
+    min="0"
+    max="999"
+    bind:value={group2}
+  />.<input
+    class="iswcGroup"
+    id="group3"
+    type="number"
+    min="0"
+    max="999"
+    bind:value={group3}
+  />-<input
+    class="iswcCheck"
+    id="checkDigit"
+    type="number"
+    min="0"
+    max="9"
+    bind:value={checkDigit}
+  />
+</div>
 
 <style lang="scss" src="./GenericField.scss"></style>

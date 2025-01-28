@@ -1,29 +1,26 @@
 <script lang="ts">
-  import type { Shares, IShare } from "@allfeat/sdk";
+  import { type IShare, Shares } from "@allfeat/sdk";
   import Button from "../Button/Button.svelte";
 
   let { sharesInput = $bindable() }: { sharesInput: Shares } = $props();
-  let shares: IShare[] = $state(sharesInput.Value ? sharesInput.Value : []);
+  let sharesProxy: IShare[] = $state([]);
 
-  function newShare(): IShare {
-    return {
+  function addShare() {
+    const newShare: IShare = $state({
       stakeholderId: "",
       shareInfo: {
         role: "A",
         mechanicalShare: 0,
         performanceShare: 0,
       },
-    };
+    });
+    sharesInput.Value = [...sharesInput.Value, newShare];
+    sharesProxy = sharesInput.Value;
   }
-
-  $effect(() => {
-    sharesInput.Value = shares;
-    $inspect(sharesInput);
-  });
 </script>
 
 <div class="shares">
-  {#each shares as share}
+  {#each sharesProxy as share}
     <div class="share">
       <div class="shareStakeId">
         <p>Stakeholder MIDDS Identifier</p>
@@ -70,7 +67,7 @@
     </div>
   {/each}
 
-  <Button onclick={() => shares.push(newShare())}>+ Add Share</Button>
+  <Button onclick={addShare}>+ Add Share</Button>
 </div>
 
 <style lang="scss">

@@ -1,6 +1,5 @@
 <script lang="ts">
   import {
-    IPINameNumber,
     ISWC,
     MusicalWorkDuration,
     MusicalWorkType,
@@ -10,7 +9,6 @@
   import IswcField from "../Fields/ISWCField.svelte";
   import DurationField from "../Fields/DurationField.svelte";
   import MusicalWorkTypeField from "../Fields/MusicalWorkTypeField.svelte";
-  import IpiNameNumberField from "../Fields/IPINameNumberField.svelte";
   import SharesField from "../Fields/SharesField.svelte";
 
   let {

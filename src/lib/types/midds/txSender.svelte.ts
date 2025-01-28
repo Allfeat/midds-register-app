@@ -19,7 +19,7 @@ export class TxSender {
   }
 
   public async execute(): Promise<IRegisterResult> {
-    const client = await AllfeatClient.new(new AllfeatProvider('melodie'))
+    const client = await AllfeatClient.new(new AllfeatProvider('devnet'))
     this.status = TxSenderStatus.ApiReady
 
     const injector = await web3FromAddress(this.account.address)
@@ -33,7 +33,4 @@ export enum TxSenderStatus {
   Init,
   ApiReady,
   FetchedInjector,
-  TxCreated,
-  TxSigned,
-  TxSended,
 }

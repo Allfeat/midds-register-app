@@ -3,11 +3,13 @@
   import HeadingIcon from "$components/molecules/HeadingIcon.svelte";
   import Table from "$components/molecules/Table.svelte";
   import { appState } from "$utils/states.svelte";
-  import { ISWC, type IMiddsInput } from "@allfeat/sdk";
+  import { ISWC, Shares, type IMiddsInput } from "@allfeat/sdk";
 
   function getStringValue(input: IMiddsInput<any, any>): string {
     if (input instanceof ISWC) {
       return input.toString();
+    } else if (input instanceof Shares) {
+      return input.Value?.length.toString() + " shares";
     }
     return input.Value ? input.Value.toString() : "";
   }
