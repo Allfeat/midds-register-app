@@ -1,23 +1,12 @@
 import { dirname } from 'path'
 import { fileURLToPath } from 'url'
 import { sveltePreprocess } from 'svelte-preprocess'
+import adapter from '@sveltejs/adapter-cloudflare';
 
 export const globalStyles = `@use "${dirname(fileURLToPath(import.meta.url))}/src/styles/imports" as *;`
 
-// Define adapter from script and use default otherwise
-let svelteAdapter
-if (process.env.VITE_ADAPTER) {
-  const adapter = await import(`@sveltejs/${process.env.VITE_ADAPTER}`)
-  svelteAdapter = adapter.default
-} else {
-  const adapter = await import('@sveltejs/adapter-cloudflare')
-  svelteAdapter = adapter.default
-}
-
-
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-  // Preprocessors docs: https://github.com/sveltejs/svelte-preprocess
   preprocess: sveltePreprocess({
     scss: {
       prependData: globalStyles,
@@ -25,11 +14,12 @@ const config = {
   }),
 
   kit: {
-    adapter: svelteAdapter({
+    adapter: adapter({
+      // See below for an explanation of these options
       routes: {
         include: ['/*'],
         exclude: ['<all>']
-      }
+      },
     }),
     alias: {
       $components: 'src/components',
@@ -41,10 +31,6 @@ const config = {
       '@polkadot/api/augment': 'src/interfaces/augment-api.ts',
       '@polkadot/types/augment': 'src/interfaces/augment-types.ts'
     },
-    prerender: {
-      handleMissingId: 'ignore',
-    },
-    inlineStyleThreshold: 4096,
   }
 }
 
