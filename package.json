@@ -1,6 +1,6 @@
 {
   "name": "allfeat-midds",
-  "version": "1.0.0",
+  "version": "0.1.1",
   "author": "Allfeat Labs. <hello@allfeat.com> (https://allfeat.com)",
   "workspaces": [
     "packages/*"
