@@ -6,21 +6,39 @@
   import { type MiddsInputs, MusicalWork, Stakeholder } from "@allfeat/sdk";
   import type { IMidds } from "@allfeat/sdk";
 
-  type Entity = {
-    name: string;
-    instance: IMidds<MiddsInputs>;
-  };
+  enum Category {}
 
-  type DisabledEntity = {
-    name: string;
-    tag: string;
-  };
+  class Entity {
+    readonly name: string;
+
+    constructor(name: string) {
+      this.name = name;
+    }
+  }
+
+  class ActiveEntity extends Entity {
+    readonly instance: IMidds<MiddsInputs>;
+
+    constructor(name: string, instance: IMidds<MiddsInputs>) {
+      super(name);
+      this.instance = instance;
+    }
+  }
+
+  class DisabledEntity extends Entity {
+    readonly tag: string;
+
+    constructor(name: string, tag: string) {
+      super(name);
+      this.tag = tag;
+    }
+  }
 
   const Entities: Entity[] = [
-    { name: "Stakeholder", instance: new Stakeholder() },
-    { name: "Musical Work", instance: new MusicalWork() },
+    new ActiveEntity("Stakeholder", new Stakeholder()),
+    new ActiveEntity("Musical Work", new MusicalWork()),
+    new DisabledEntity("Artist", "soon"),
   ];
-  const DisabledEntities: DisabledEntity[] = [{ name: "Artist", tag: "soon" }];
 
   $effect(() => {
     console.log(appState.selectedMiddsEntity);
@@ -33,23 +51,24 @@
 
   <div class="button-choices">
     {#each Entities as entity}
-      <ButtonChoice
-        active={appState.selectedMiddsEntityName === entity.name}
-        onclick={() => (
-          (appState.selectedMiddsEntity = entity.instance),
-          (appState.selectedMiddsEntityName = entity.name)
-        )}
-      >
-        {entity.name}
-      </ButtonChoice>
-    {/each}
-    {#each DisabledEntities as entity}
-      <ButtonChoice disabled>
-        {entity.name}
-        {#if entity.tag}
-          <Tag color="red">{entity.tag}</Tag>
-        {/if}
-      </ButtonChoice>
+      {#if entity instanceof ActiveEntity}
+        <ButtonChoice
+          active={appState.selectedMiddsEntityName === entity.name}
+          onclick={() => (
+            (appState.selectedMiddsEntity = entity.instance),
+            (appState.selectedMiddsEntityName = entity.name)
+          )}
+        >
+          {entity.name}
+        </ButtonChoice>
+      {:else if entity instanceof DisabledEntity}
+        <ButtonChoice disabled>
+          {entity.name}
+          {#if entity.tag}
+            <Tag color="red">{entity.tag}</Tag>
+          {/if}
+        </ButtonChoice>
+      {/if}
     {/each}
   </div>
 </div>
