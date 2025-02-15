@@ -10,5 +10,8 @@
     "noImplicitThis": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
+    "plugins": [{
+            "name": "typescript-svelte-plugin"
+        }]
   }
 }

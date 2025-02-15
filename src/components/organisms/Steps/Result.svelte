@@ -22,12 +22,14 @@
     <InfoBox
       icon="hash"
       label="MIDDS Hash"
+      rawValue={result.middsHash}
       value={shortenHash(result.middsHash)}
     />
-    <InfoBox icon="hash" label="Tx Hash" value={shortenHash(result.txHash)} />
+    <InfoBox icon="hash" label="Tx Hash" rawValue={result.txHash} value={shortenHash(result.txHash)} />
     <InfoBox
       icon="hash"
       label="Block Number"
+      rawValue={result.blockNumber.toString()}
       value={result.blockNumber.toString()}
     />
   </div>
