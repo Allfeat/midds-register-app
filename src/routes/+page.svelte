@@ -19,7 +19,7 @@
   );
 </script>
 
-<Metas title="MIDDS" description="" image="" />
+<Metas title="Allfeat | MIDDS Registration" description="" image="" />
 
 <main class="app">
   <ContentLayout title="MIDDS Registration">
