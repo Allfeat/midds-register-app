@@ -15,10 +15,6 @@
     decimals: number,
     precision: number,
   ): string {
-    if (value === BigInt(0)) {
-      return "0";
-    }
-
     const divisor = BigInt(10 ** decimals);
     const wholePart = value / divisor;
     const remainder = value % divisor;
@@ -31,7 +27,9 @@
 </script>
 
 <div class="container">
-  {#if balance}
+  {#if balance === 0n}
+    0 MEL
+  {:else if balance && balance > 0n}
     {convertToBalanceRounded(balance, 12, 2)} MEL
   {:else}
     <span class="loader"></span>
