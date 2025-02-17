@@ -2,14 +2,13 @@
 // for information about these interfaces
 // and what to do when importing types
 declare global {
-	namespace App {
-    }
+  namespace App {}
 
-    interface IMetadata {
-        key: string
-        name: string
-        value: string
-    }
+  interface IMetadata {
+    key: string;
+    name: string;
+    value: string;
+  }
 }
 
-export {}
+export {};

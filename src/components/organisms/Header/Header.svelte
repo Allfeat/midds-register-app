@@ -1,24 +1,38 @@
-<style lang="scss" src="./Header.scss"></style>
-
 <script lang="ts">
-    import Tag from '$components/atoms/Tag.svelte'
-    import ButtonWallet from '$components/atoms/ButtonWallet/ButtonWallet.svelte'
+  import Tag from "$components/atoms/Tag.svelte";
+  import ButtonWallet from "$components/atoms/ButtonWallet/ButtonWallet.svelte";
+  import Balance from "$components/atoms/Balance.svelte";
+  import { appState } from "$utils/states.svelte";
 </script>
 
 <header>
-    <div class="container">
-        <div class="inner">
-            <div class="logo">
-                <a href="/" aria-label="Allfeat">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="99" height="24" fill="none" aria-label="Allfeat logo">
-                        <path fill="#FFFBEB" d="M56.24 6.69c-4.83 0-8.3 3.3-8.3 8.65 0 5.36 3.5 8.66 8.46 8.66 4.07 0 6.83-2.23 7.46-5.46h-3.83c-.36 1.33-1.56 2.4-3.63 2.4-2.66 0-4.4-1.8-4.4-4.53v-.04h12.1v-1.03c0-5.56-3.2-8.65-7.86-8.65ZM52 13.68c.2-2.46 1.86-3.93 4.16-3.93s3.96 1.57 3.96 3.93h-8.12ZM73.54 6.69c-4.07 0-7.1 2.06-7.36 6.1h3.96c.07-2.04 1.2-3.04 3.23-3.04 1.9 0 3.06.84 3.06 3.07v.3l-5.5 1.36c-2.56.67-4.82 2.2-4.82 5.06 0 2.5 1.76 4.46 5.13 4.46 2.5 0 4.16-1.13 5.26-3.1v2.77h3.86V13.28c0-4.1-2.43-6.59-6.82-6.59Zm2.9 10.55c0 2.43-1.57 3.93-3.8 3.93-1.57 0-2.6-.7-2.6-2.13 0-1.2.77-1.96 2.43-2.36l3.96-.97v1.53ZM87.98 2.36 84.05 3v4.02h-2.1v3.33h2.1v9.12c0 2.8 1.13 4.2 4.23 4.2h2.83v-3.33h-1.73c-1.1 0-1.4-.27-1.4-1.4v-8.59h3.13V7.02h-3.13V2.36ZM40.63 4.26v2.76H38.5v3.33h2.13v13.32h3.93V10.35h2.86V7.03h-2.86v-2.4c0-1.1.33-1.4 1.36-1.4h1.5V0h-2.66c-2.9 0-4.13 1.63-4.13 4.26ZM34.9 19.04V0h-3.94v19.4c0 2.64 1.24 4.27 4.13 4.27h3v-3.23h-1.83c-1.03 0-1.36-.3-1.36-1.4ZM26.42 19.04V0h-3.93v19.4c0 2.64 1.23 4.27 4.13 4.27h3v-3.23h-1.84c-1.03 0-1.36-.3-1.36-1.4ZM10.65 0a3.89 3.89 0 0 0-3.69 2.66L0 23.66h4.13l1.96-6.22h9.06l2 6.23h4.13l-6.93-21A3.89 3.89 0 0 0 10.65 0ZM7.23 13.85 10.45 3.7c.05-.17.3-.17.34 0l3.23 10.15h-6.8ZM95.73 23.67a2.4 2.4 0 1 0 0-4.82 2.4 2.4 0 0 0 0 4.82Z"/>
-                    </svg>
-                </a>
-                <Tag color="red">Alpha</Tag>
-            </div>
-            <nav>
-                <ButtonWallet size="small" />
-            </nav>
-        </div>
+  <div class="container">
+    <div class="inner">
+      <div class="logo">
+        <a href="/" aria-label="Allfeat">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="99"
+            height="24"
+            fill="none"
+            aria-label="Allfeat logo"
+          >
+            <path
+              fill="#FFFBEB"
+              d="M56.24 6.69c-4.83 0-8.3 3.3-8.3 8.65 0 5.36 3.5 8.66 8.46 8.66 4.07 0 6.83-2.23 7.46-5.46h-3.83c-.36 1.33-1.56 2.4-3.63 2.4-2.66 0-4.4-1.8-4.4-4.53v-.04h12.1v-1.03c0-5.56-3.2-8.65-7.86-8.65ZM52 13.68c.2-2.46 1.86-3.93 4.16-3.93s3.96 1.57 3.96 3.93h-8.12ZM73.54 6.69c-4.07 0-7.1 2.06-7.36 6.1h3.96c.07-2.04 1.2-3.04 3.23-3.04 1.9 0 3.06.84 3.06 3.07v.3l-5.5 1.36c-2.56.67-4.82 2.2-4.82 5.06 0 2.5 1.76 4.46 5.13 4.46 2.5 0 4.16-1.13 5.26-3.1v2.77h3.86V13.28c0-4.1-2.43-6.59-6.82-6.59Zm2.9 10.55c0 2.43-1.57 3.93-3.8 3.93-1.57 0-2.6-.7-2.6-2.13 0-1.2.77-1.96 2.43-2.36l3.96-.97v1.53ZM87.98 2.36 84.05 3v4.02h-2.1v3.33h2.1v9.12c0 2.8 1.13 4.2 4.23 4.2h2.83v-3.33h-1.73c-1.1 0-1.4-.27-1.4-1.4v-8.59h3.13V7.02h-3.13V2.36ZM40.63 4.26v2.76H38.5v3.33h2.13v13.32h3.93V10.35h2.86V7.03h-2.86v-2.4c0-1.1.33-1.4 1.36-1.4h1.5V0h-2.66c-2.9 0-4.13 1.63-4.13 4.26ZM34.9 19.04V0h-3.94v19.4c0 2.64 1.24 4.27 4.13 4.27h3v-3.23h-1.83c-1.03 0-1.36-.3-1.36-1.4ZM26.42 19.04V0h-3.93v19.4c0 2.64 1.23 4.27 4.13 4.27h3v-3.23h-1.84c-1.03 0-1.36-.3-1.36-1.4ZM10.65 0a3.89 3.89 0 0 0-3.69 2.66L0 23.66h4.13l1.96-6.22h9.06l2 6.23h4.13l-6.93-21A3.89 3.89 0 0 0 10.65 0ZM7.23 13.85 10.45 3.7c.05-.17.3-.17.34 0l3.23 10.15h-6.8ZM95.73 23.67a2.4 2.4 0 1 0 0-4.82 2.4 2.4 0 0 0 0 4.82Z"
+            />
+          </svg>
+        </a>
+        <Tag color="red">Alpha</Tag>
+      </div>
+      <nav>
+        {#if appState.walletState.accounts && appState.walletState.accounts[0]}
+          <Balance account={appState.walletState.accounts[0].address} />
+        {/if}
+        <ButtonWallet size="small" />
+      </nav>
     </div>
+  </div>
 </header>
+
+<style lang="scss" src="./Header.scss"></style>

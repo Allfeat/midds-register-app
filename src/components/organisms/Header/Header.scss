@@ -1,24 +1,29 @@
 header {
-    margin-bottom: 24px;
+  margin-bottom: 24px;
 
-    @include bp (sm) {
-        margin-bottom: 32px;
-    }
+  @include bp (sm) {
+    margin-bottom: 32px;
+  }
 }
 
 .inner {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    border-width: 0px 1px 1px 1px;
-    border-style: solid;
-    border-color: rgba(255, 251, 235, 0.2);
-    border-radius: 0 0 8px 8px;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  border-width: 0px 1px 1px 1px;
+  border-style: solid;
+  border-color: rgba(255, 251, 235, 0.2);
+  border-radius: 0 0 8px 8px;
 }
 
 // Logo
 .logo {
-    display: flex;
-    align-items: flex-end;
-    gap: 12px;
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+nav {
+  display: flex;
+  gap: 12px;
 }
