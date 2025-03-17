@@ -48,6 +48,10 @@
       transition: border-color 0.3s;
       cursor: pointer;
 
+      &:open {
+        background-color: white;
+      }
+
       &:hover,
       &:focus,
       &:active {

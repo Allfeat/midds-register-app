@@ -44,11 +44,11 @@
   }
 
   const Entities: Entity[] = [
-    new ActiveEntity("Stakeholder", Category.MusicalWork, new Stakeholder()),
+    new ActiveEntity("Rights Owner", Category.MusicalWork, new Stakeholder()),
     new ActiveEntity("Musical Work", Category.MusicalWork, new MusicalWork()),
-    new DisabledEntity("Artist", Category.Track, "soon"),
-    new DisabledEntity("Release", Category.Track, "soon"),
     new DisabledEntity("Track", Category.Track, "soon"),
+    new DisabledEntity("Release", Category.Track, "soon"),
+    new DisabledEntity("Performer", Category.Track, "soon"),
   ];
 
   $effect(() => {
